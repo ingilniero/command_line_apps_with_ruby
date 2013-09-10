@@ -2,6 +2,7 @@ require 'thor'
 
 class App < Thor
   desc 'log', 'Prints commits details.'
+  option :format
 
   def log(keyword=nil)
     commits = [
@@ -29,12 +30,26 @@ class App < Thor
                            end
 
     commits_to_be_listed.each do |commit|
+      if options[:format].nil?
+        print_default commit
+      else options[:format] == 'oneline'
+        print_oneline commit
+      end
+    end
+  end
+
+  private
+
+  def print_default(commit)
       puts '---------------'
       puts "Author: #{commit[:author]}"
       puts "Message: #{commit[:message]}"
       puts "Date: #{commit[:date]}"
       puts ""
-    end
+  end
+
+  def print_oneline(commit)
+    puts %Q{#{commit[:message]}}
   end
 end
 
