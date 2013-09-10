@@ -3,6 +3,7 @@ require 'thor'
 class App < Thor
   desc 'log', 'Prints commits details.'
   option :format
+  option :show_author, type: :boolean, default: false #--show-author --no-show_author
 
   def log(keyword=nil)
     commits = [
@@ -49,7 +50,13 @@ class App < Thor
   end
 
   def print_oneline(commit)
-    puts %Q{#{commit[:message]}}
+    author = if options[:show_author]
+               "(#{commit[:author]})"
+             else
+               ""
+             end
+
+    puts %Q{#{commit[:message]} #{author}}
   end
 end
 
