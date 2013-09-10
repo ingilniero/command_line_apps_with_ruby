@@ -3,7 +3,7 @@ require 'thor'
 class App < Thor
   desc 'log', 'Prints commits details.'
 
-  def log
+  def log(keyword=nil)
     commits = [
       {
         author: 'ingilniero',
@@ -22,7 +22,13 @@ class App < Thor
       }
     ]
 
-    commits.each do |commit|
+    commits_to_be_listed = if keyword.nil?
+                             commits
+                           else
+                             commits.select { |commit| commit[:author].downcase.include? keyword.downcase }
+                           end
+
+    commits_to_be_listed.each do |commit|
       puts '---------------'
       puts "Author: #{commit[:author]}"
       puts "Message: #{commit[:message]}"
