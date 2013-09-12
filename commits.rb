@@ -4,7 +4,7 @@ class Commit < Thor
   desc 'add [--author=AUTHOR]', 'Adds a new commit'
 
   option :message, required: true, aliases: '-m'
-  option :author, default: 'ingilniero'
+  option :author, default: 'ingilniero', aliases: '-a'
 
   def add
     commit = {
