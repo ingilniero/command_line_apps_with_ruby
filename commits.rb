@@ -1,7 +1,7 @@
 require 'thor'
 
 class Commit < Thor
-  desc 'add --message --author', 'Adds a new commit'
+  desc 'add [--author=AUTHOR]', 'Adds a new commit'
 
   option :message, required: true
   option :author, default: 'ingilniero'
