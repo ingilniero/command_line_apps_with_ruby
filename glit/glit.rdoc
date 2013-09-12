@@ -1,0 +1,5 @@
+= glit
+
+Generate this with
+    glit rdoc
+After you have described your command line interface
