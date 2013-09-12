@@ -1,9 +1,22 @@
 require 'thor'
 
+class Commit < Thor
+  desc 'add --message --author', 'Adds a new commit'
+
+  option :message, required: true
+  option :author, default: 'ingilniero'
+
+  def add
+  end
+end
+
 class App < Thor
   desc 'log', 'Prints commits details.'
   option :format
   option :show_author, type: :boolean, default: false #--show-author --no-show_author
+
+  desc 'branch', 'Manage branch'
+  subcommand 'commit', Commit
 
   def log(keyword=nil)
     commits = [
