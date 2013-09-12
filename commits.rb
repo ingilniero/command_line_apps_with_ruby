@@ -14,7 +14,7 @@ class App < Thor
   option :format
   option :show_author, type: :boolean, default: false #--show-author --no-show_author
 
-  desc 'branch', 'Manage branch'
+  desc 'commit', 'Manage commits'
   subcommand 'commit', Commit
 
   desc 'log', 'Prints commits details.'
