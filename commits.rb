@@ -3,7 +3,7 @@ require 'thor'
 class Commit < Thor
   desc 'add [--author=AUTHOR]', 'Adds a new commit'
 
-  option :message, required: true
+  option :message, required: true, aliases: '-m'
   option :author, default: 'ingilniero'
 
   def add
