@@ -11,31 +11,15 @@ class Commit < Thor
 end
 
 class App < Thor
-  desc 'log', 'Prints commits details.'
   option :format
   option :show_author, type: :boolean, default: false #--show-author --no-show_author
 
   desc 'branch', 'Manage branch'
   subcommand 'commit', Commit
 
+  desc 'log', 'Prints commits details.'
   def log(keyword=nil)
-    commits = [
-      {
-        author: 'ingilniero',
-        message: 'First commit',
-        date: '10-09-12 14:01:22'
-      },
-      {
-        author: 'racoon',
-        message: 'Add new feature',
-        date: '09-04-04 22:26:39'
-      },
-      {
-        author: 'gentleman',
-        message: 'Fix ugly bug',
-        date: '05-04-12 10:31:52'
-      }
-    ]
+    commits = COMMITS
 
     commits_to_be_listed = if keyword.nil?
                              commits
@@ -72,5 +56,23 @@ class App < Thor
     puts %Q{#{commit[:message]} #{author}}
   end
 end
+
+COMMITS = [
+      {
+        author: 'ingilniero',
+        message: 'First commit',
+        date: '10-09-12 14:01:22'
+      },
+      {
+        author: 'racoon',
+        message: 'Add new feature',
+        date: '09-04-04 22:26:39'
+      },
+      {
+        author: 'gentleman',
+        message: 'Fix ugly bug',
+        date: '05-04-12 10:31:52'
+      }
+    ]
 
 App.start ARGV
