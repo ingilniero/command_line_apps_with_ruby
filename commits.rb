@@ -7,6 +7,17 @@ class Commit < Thor
   option :author, default: 'ingilniero'
 
   def add
+    commit = {
+      author: options[:author],
+      message: options[:message],
+      date: Time.now
+    }
+
+    COMMITS << commit
+
+    COMMITS.each do |c|
+      puts c[:message]
+    end
   end
 end
 
